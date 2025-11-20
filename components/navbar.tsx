@@ -36,10 +36,10 @@ export function Navbar() {
           {/* Auth Buttons */}
           <div className="hidden md:flex items-center gap-3">
             <Button variant="outline" asChild>
-              <Link href="/login">Sign In</Link>
+              <Link href="/auth/login">Sign In</Link>
             </Button>
             <Button asChild>
-              <Link href="/register">Register</Link>
+              <Link href="/auth/register">Register</Link>
             </Button>
           </div>
 
