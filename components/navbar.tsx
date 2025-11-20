@@ -25,7 +25,7 @@ export function Navbar() {
               className="w-8 h-8 rounded-lg flex items-center justify-center" 
               />
             {/* </div> */}
-            <span className="font-bold text-lg text-foreground">Cardinal</span>
+            <span className="font-bold text-lg text-foreground">cadical</span>
           </div>
           </Link>
           {/* Desktop Menu */}
