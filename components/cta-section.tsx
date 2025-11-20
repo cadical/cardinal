@@ -12,7 +12,7 @@ export function CTASection() {
 
         <div className="flex flex-col sm:flex-row gap-4 justify-center pt-4">
           <Button size="lg" variant="secondary" asChild>
-            <Link href="/register">Start Today</Link>
+            <Link href="/auth/register">Start Today</Link>
           </Button>
           <Button
             size="lg"
@@ -20,7 +20,7 @@ export function CTASection() {
             asChild
             className="border-primary-foreground text-primary-foreground hover:bg-primary-foreground hover:text-primary bg-transparent"
           >
-            <Link href="/login">Sign In</Link>
+            <Link href="/auth/login">Sign In</Link>
           </Button>
         </div>
       </div>

@@ -24,12 +24,12 @@ export default function AdminLayout({
         const session = await response.json()
 
         if (!session || session.user?.role !== "SUPER_ADMIN") {
-          router.push("/login")
+          router.push("/auth/login")
         } else {
           setIsAuthorized(true)
         }
       } catch (error) {
-        router.push("/login")
+        router.push("/auth/login")
       } finally {
         setIsLoading(false)
       }

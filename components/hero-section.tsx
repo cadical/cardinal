@@ -31,7 +31,7 @@ export function HeroSection() {
             {/* CTA Buttons */}
             <div className="flex flex-col sm:flex-row gap-4">
               <Button size="lg" asChild className="group">
-                <Link href="/register">
+                <Link href="/auth/register">
                   Get Started
                   <span className="ml-2 group-hover:translate-x-1 transition-transform">→</span>
                 </Link>
