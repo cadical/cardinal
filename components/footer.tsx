@@ -1,3 +1,4 @@
+import Image from "next/image"
 import Link from "next/link"
 
 export function Footer() {
@@ -7,9 +8,15 @@ export function Footer() {
         <div className="grid md:grid-cols-4 gap-8 mb-8">
           <div>
             <div className="flex items-center gap-2 mb-4">
-              <div className="w-6 h-6 bg-primary rounded flex items-center justify-center">
+              {/* <div className="w-6 h-6 bg-primary rounded flex items-center justify-center">
                 <span className="text-primary-foreground font-bold text-sm">C</span>
-              </div>
+              </div> */}
+               <Image
+                  src={'/images/logo.png'} 
+                  alt="logo"
+                  width={6} height={6} 
+                  className="w-8 h-8 rounded-lg flex items-center justify-center" 
+                  />
               <span className="font-bold">Cadical Solutions</span>
             </div>
             <p className="text-sm text-muted-foreground">Health is life, protect yours with us.</p>

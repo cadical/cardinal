@@ -4,6 +4,7 @@ import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { Menu, X } from "lucide-react"
 import { useState } from "react"
+import Image from "next/image"
 
 export function Navbar() {
   const [isOpen, setIsOpen] = useState(false)
@@ -14,10 +15,16 @@ export function Navbar() {
         <div className="flex justify-between items-center h-16">
           {/* Logo */}
           <div className="flex items-center gap-2">
-            <div className="w-8 h-8 bg-primary rounded-lg flex items-center justify-center">
-              <span className="text-primary-foreground font-bold text-lg">C</span>
-            </div>
-            <span className="font-bold text-lg text-foreground">Cadical</span>
+            {/* <div className="w-8 h-8 rounded-lg flex items-center justify-center"> */}
+              {/* <span className="text-primary-foreground font-bold text-lg">C</span> */}
+              <Image 
+              src={'/images/logo.png'} 
+              alt="logo"
+              width={6} height={6} 
+              className="w-8 h-8 rounded-lg flex items-center justify-center" 
+              />
+            {/* </div> */}
+            <span className="font-bold text-lg text-foreground">Cardinal</span>
           </div>
 
           {/* Desktop Menu */}
