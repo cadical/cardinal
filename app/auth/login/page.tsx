@@ -3,13 +3,14 @@
 import type React from "react"
 
 import { useState } from "react"
-import { useRouter } from "next/navigation"
+import { useRouter } from "next/router"
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { AlertCircle } from "lucide-react"
-import { Alert, AlertDescription } from "@/components/ui/alert"
+// import { Alert, AlertDescription } from "@/components/ui/alert"
+import { auth } from "@/lib/auth"
 
 export default function LoginPage() {
   const router = useRouter()
@@ -24,20 +25,23 @@ export default function LoginPage() {
     setIsLoading(true)
 
     try {
-      const response = await fetch("/api/auth/sign-in", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email, password }),
-      })
+      const response = await auth.api.signInEmail({body: {
+         email, password
+      }})
+      // await fetch("/api/auth/sign-in", {
+      //   method: "POST",
+      //   headers: { "Content-Type": "application/json" },
+      //   body: JSON.stringify({ email, password }),
+      // })
 
-      if (!response.ok) {
+      if (!response) {
         throw new Error("Invalid credentials")
       }
 
-      const data = await response.json()
+      const data = await response.user;
 
       // Redirect based on role
-      if (data.user.role === "SUPER_ADMIN") {
+      if (data.name === "SUPER_ADMIN") {
         router.push("/admin/dashboard")
       } else {
         router.push("/clinician/profile")
@@ -72,10 +76,11 @@ export default function LoginPage() {
           <CardContent>
             <form onSubmit={handleSubmit} className="space-y-4">
               {error && (
-                <Alert variant="destructive">
-                  <AlertCircle className="h-4 w-4" />
-                  <AlertDescription>{error}</AlertDescription>
-                </Alert>
+                <p>{error}</p>
+                // <Alert variant="destructive">
+                //   <AlertCircle className="h-4 w-4" />
+                //   <AlertDescription>{error}</AlertDescription>
+                // </Alert>
               )}
 
               <div className="space-y-2">

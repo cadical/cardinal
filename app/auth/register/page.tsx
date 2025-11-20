@@ -3,15 +3,16 @@
 import type React from "react"
 
 import { useState } from "react"
-import { useRouter } from "next/navigation"
+import { useRouter } from "next/router"
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import { Alert, AlertDescription } from "@/components/ui/alert"
+// import { Alert, AlertDescription } from "@/components/ui/alert"
 import { AlertCircle, CheckCircle2 } from "lucide-react"
+import { auth } from "@/lib/auth"
 
 const specializations = [
   "Cardiology",
@@ -97,27 +98,34 @@ export default function RegisterPage() {
 
     try {
       // Create user
-      const userResponse = await fetch("/api/auth/sign-up", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
+      const userResponse = await auth.api.createUser({
+        body: {
+          name: formData.firstName + formData.lastName,
           email: formData.email,
           password: formData.password,
-        }),
+        }
       })
+      // await fetch("/api/auth/sign-up", {
+      //   method: "POST",
+      //   headers: { "Content-Type": "application/json" },
+      //   body: JSON.stringify({
+      //     email: formData.email,
+      //     password: formData.password,
+      //   }),
+      // })
 
-      if (!userResponse.ok) {
+      if (!userResponse) {
         throw new Error("Failed to create account")
       }
 
-      const userData = await userResponse.json()
+      const userData = await userResponse.user;
 
       // Create clinician profile
       const clinicianResponse = await fetch("/api/clinician/register", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-          userId: userData.user.id,
+          userId: userData.id,
           firstName: formData.firstName,
           lastName: formData.lastName,
           specialization: formData.specialization,
@@ -167,17 +175,19 @@ export default function RegisterPage() {
           <CardContent>
             <form onSubmit={handleSubmit} className="space-y-6">
               {error && (
-                <Alert variant="destructive">
-                  <AlertCircle className="h-4 w-4" />
-                  <AlertDescription>{error}</AlertDescription>
-                </Alert>
+                <p>{error}</p>
+                // <Alert variant="destructive">
+                //   <AlertCircle className="h-4 w-4" />
+                //   <AlertDescription>{error}</AlertDescription>
+                // </Alert>
               )}
 
               {success && (
-                <Alert className="bg-green-50 border-green-200 text-green-900 dark:bg-green-900/20 dark:border-green-900 dark:text-green-400">
-                  <CheckCircle2 className="h-4 w-4" />
-                  <AlertDescription>{success}</AlertDescription>
-                </Alert>
+                <p>{success}</p>
+                // <Alert className="bg-green-50 border-green-200 text-green-900 dark:bg-green-900/20 dark:border-green-900 dark:text-green-400">
+                //   <CheckCircle2 className="h-4 w-4" />
+                //   <AlertDescription>{success}</AlertDescription>
+                // </Alert>
               )}
 
               {step === 1 ? (
