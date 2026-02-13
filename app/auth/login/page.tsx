@@ -8,9 +8,10 @@ import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import { AlertCircle } from "lucide-react"
+import { authClient } from "@/lib/auth-client"
+// import { AlertCircle } from "lucide-react"
 // import { Alert, AlertDescription } from "@/components/ui/alert"
-import { auth } from "@/lib/auth"
+// import { auth } from "@/lib/auth"
 
 export default function LoginPage() {
   const router = useRouter()
@@ -25,9 +26,9 @@ export default function LoginPage() {
     setIsLoading(true)
 
     try {
-      const response = await auth.api.signInEmail({body: {
+      const response = await authClient.signIn.email({
          email, password
-      }})
+      })
       // await fetch("/api/auth/sign-in", {
       //   method: "POST",
       //   headers: { "Content-Type": "application/json" },
@@ -38,10 +39,10 @@ export default function LoginPage() {
         throw new Error("Invalid credentials")
       }
 
-      const data = await response.user;
+      const data = await response.data?.user;
 
       // Redirect based on role
-      if (data.name === "SUPER_ADMIN") {
+      if (data?.name === "SUPER_ADMIN") {
         router.push("/admin/dashboard")
       } else {
         router.push("/clinician/profile")

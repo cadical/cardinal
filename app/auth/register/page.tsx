@@ -10,9 +10,10 @@ import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
+import { authClient } from "@/lib/auth-client"
 // import { Alert, AlertDescription } from "@/components/ui/alert"
-import { AlertCircle, CheckCircle2 } from "lucide-react"
-import { auth } from "@/lib/auth"
+// import { AlertCircle, CheckCircle2 } from "lucide-react"
+// import { auth } from "@/lib/auth"
 
 const specializations = [
   "Cardiology",
@@ -98,12 +99,12 @@ export default function RegisterPage() {
 
     try {
       // Create user
-      const userResponse = await auth.api.createUser({
-        body: {
+      const userResponse = await authClient.signUp.email({
+       
           name: formData.firstName + formData.lastName,
           email: formData.email,
           password: formData.password,
-        }
+        
       })
       // await fetch("/api/auth/sign-up", {
       //   method: "POST",
@@ -118,14 +119,14 @@ export default function RegisterPage() {
         throw new Error("Failed to create account")
       }
 
-      const userData = await userResponse.user;
+      const userData = await userResponse.data?.user;
 
       // Create clinician profile
       const clinicianResponse = await fetch("/api/clinician/register", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-          userId: userData.id,
+          userId: userData?.id,
           firstName: formData.firstName,
           lastName: formData.lastName,
           specialization: formData.specialization,

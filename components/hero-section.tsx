@@ -1,4 +1,5 @@
 import { Button } from "@/components/ui/button"
+import Image from "next/image"
 import Link from "next/link"
 
 export function HeroSection() {
@@ -55,12 +56,13 @@ export function HeroSection() {
           </div>
 
           {/* Right Image */}
-          <div className="hidden md:flex justify-center items-center">
+          <div className=" md:flex justify-center items-center">
             <div className="relative w-full h-96 bg-gradient-to-br from-primary/20 to-accent/20 rounded-2xl border border-border flex items-center justify-center">
-              <div className="text-center">
+              {/* <div className="text-center">
                 <div className="text-6xl mb-4">🏥</div>
                 <p className="text-sm text-muted-foreground">Healthcare Excellence</p>
-              </div>
+              </div> */}
+              <Image src={'/images/home-image.jpeg'} alt="Healthcare" fill className="object-cover rounded-2xl" />
             </div>
           </div>
         </div>

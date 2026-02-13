@@ -1,9 +1,8 @@
 import { type NextRequest, NextResponse } from "next/server"
-import { PrismaClient } from "@prisma/client"
 import { auth } from "@/lib/auth"
 import { headers } from "next/headers"
+import { prisma } from "@/lib/prisma"
 
-const prisma = new PrismaClient()
 
 export async function GET(req: NextRequest) {
   try {
@@ -12,7 +11,7 @@ export async function GET(req: NextRequest) {
     const isActive = searchParams.get("isActive") === "true"
 
     const where = {
-      ...(category && { category }),
+      // ...(category && { category }),
       ...(isActive && { isActive: true }),
     }
 
