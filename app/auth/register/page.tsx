@@ -107,14 +107,7 @@ export default function RegisterPage() {
           password: formData.password,
         
       })
-      // await fetch("/api/auth/sign-up", {
-      //   method: "POST",
-      //   headers: { "Content-Type": "application/json" },
-      //   body: JSON.stringify({
-      //     email: formData.email,
-      //     password: formData.password,
-      //   }),
-      // })
+ 
 
       if (!userResponse) {
         throw new Error("Failed to create account")

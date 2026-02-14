@@ -13,13 +13,13 @@ export async function POST(req: NextRequest) {
     }
 
     // Check if clinician already exists
-    const existingClinician = await prisma.clinician.findUnique({
-      where: { userId },
-    })
+    // const existingClinician = await prisma.clinician.findUnique({
+    //   where: { userId: userId },
+    // })
 
-    if (existingClinician) {
-      return NextResponse.json({ error: "Clinician profile already exists" }, { status: 400 })
-    }
+    // if (existingClinician) {
+    //   return NextResponse.json({ error: "Clinician profile already exists" }, { status: 400 })
+    // }
 
     // Check if license number is unique
     const licenseExists = await prisma.clinician.findUnique({

@@ -1,15 +1,32 @@
 import { betterAuth, BetterAuthOptions } from "better-auth";
 import { prismaAdapter } from "better-auth/adapters/prisma";
+import prisma from "@/lib/prisma";
 import jwt from "jsonwebtoken";
 import { openAPI } from "better-auth/plugins";
 import { admin } from "better-auth/plugins";
-import prisma from "./prisma";
+// import { sendEmail } from "@/app/actions/email-actions";
+// import { sendUserVerificationEmail } from "@/app/actions/send-emails/verify-email";
+// import { sendResetPasswordEmail } from "@/app/actions/send-emails/reset-password-email";
 
 // ─────────────────────────────
 // 🔐 JWT CONFIG (for mobile clients)
 // ─────────────────────────────
 const JWT_SECRET = process.env.JWT_SECRET || "super-secret-key";
 const JWT_EXPIRES_IN = "7d";
+
+
+// const BASE_URL =
+//   // process.env.BETTER_AUTH_URL ||
+//   // process.env.NEXT_PUBLIC_SITE_URL ||
+//   "https://medslearn.com";
+
+// const TRUSTED_ORIGINS = [
+//   "http://localhost:3000",
+//   "http://127.0.0.1:3000",
+//   "https://talktomeds.com",
+//   "https://www.talktomeds.com",
+// ];
+
 
 export function generateUserToken(user: any) {
   return jwt.sign(
@@ -31,26 +48,39 @@ export function verifyUserToken(token: string) {
 // 🧩 BETTER AUTH CONFIG
 // ─────────────────────────────
 export const auth = betterAuth({
+  // baseURL: BASE_URL,
+
+  // trustedOrigins: TRUSTED_ORIGINS,
+
+ 
+
   database: prismaAdapter(prisma, { provider: "postgresql" }),
 
   session: {
     expiresIn: 60 * 60 * 24 * 7, // 7 days
     updateAge: 60 * 60 * 24 * 7, // refresh every 7 days
+    storeSessionInDatabase: true, 
+    preserveSessionInDatabase: true, 
     cookieCache: {
       enabled: true,
-      maxAge: 5 * 60,
+      maxAge: 60 * 60 * 24 * 3,
+      // strategy: "jwt"
     },
   },
 
+  advanced: {
+    disableOriginCheck: true
+  },
+
   user: {
-    additionalFields: {
-      premium: { type: "boolean", required: false },
-    },
+    // additionalFields: {
+    //   premium: { type: "boolean", required: false },
+    // },
     changeEmail: {
-      enabled: false,
+      enabled: true,
       // sendChangeEmailVerification: async ({ newEmail, url }) => {
       //   await sendEmail({
-      //     app_name: "mnlearn",
+      //     app_name: "TalkToMeds",
       //     to: newEmail,
       //     subject: "Verify your email change",
       //     text: `Click the link to verify: ${url}`,
@@ -73,33 +103,24 @@ export const auth = betterAuth({
       impersonationSessionDuration: 60 * 60 * 24 * 7,
     }),
   ],
-
+  
   emailAndPassword: {
     enabled: true,
     requireEmailVerification: false,
-    // sendResetPassword: async ({ user, url }) => {
-    //   await sendEmail({
-    //     app_name: "mnlearn",
-    //     to: user.email,
-    //     subject: "Reset your password",
-    //     text: `Click the link to reset your password: ${url}`,
-    //     html: `<a href=${url}>Click here to reset your password.</a>`,
-    //   });
+    autoSignIn: true,
+    // sendResetPassword: async ({ user, url, token }, request) => {
+      // await sendResetPasswordEmail(user.email, user.email, url );
+     
     // },
   },
 
   emailVerification: {
+    // sendOnSignUp: true,
     sendOnSignUp: false,
     autoSignInAfterVerification: true,
-    // sendVerificationEmail: async ({ user, token }) => {
-    //   const verificationUrl = `${process.env.BETTER_AUTH_URL}/api/auth/verify-email?token=${token}&callbackURL=${process.env.EMAIL_VERIFICATION_CALLBACK_URL}`;
-    //   await sendEmail({
-    //     app_name: "mnlearn",
-    //     to: user.email,
-    //     subject: "Verify your email address",
-    //     text: `Click the link to verify your email: ${verificationUrl}`,
-    //     html: `<a href=${verificationUrl}>Click here to verify your email.</a>`,
-    //   });
+    // sendVerificationEmail: async ({ user, url, token }, request) => {
+     
+    //   await sendUserVerificationEmail(user.email, user.name || "", url);
     // },
   },
 } satisfies BetterAuthOptions);
@@ -141,118 +162,3 @@ export async function authenticateRequest(req: Request) {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// import { betterAuth, BetterAuthOptions } from "better-auth";
-// import { prismaAdapter } from "better-auth/adapters/prisma";
-// import prisma from "@/lib/prisma";
-// // import { sendEmail } from "@/actions/email";
-// import { openAPI } from "better-auth/plugins";
-// import { admin } from "better-auth/plugins";
-// import { sendEmail } from "./app/actions/email-actions";
-
-
-// export const auth = betterAuth({
-//   database: prismaAdapter(prisma, {
-//     provider: "postgresql",
-//   }),
-//   session: {
-//     expiresIn: 60 * 60 * 24 * 7, // 7 days
-//     // BUG: Prob a bug with updateAge method. It throws an error - Argument `where` of type SessionWhereUniqueInput needs at least one of `id` arguments. 
-//     // As a workaround, set updateAge to a large value for now.
-//     updateAge: 60 * 60 * 24 * 7, // 7 days (every 7 days the session expiration is updated)
-//     cookieCache: {
-//       enabled: true,
-//       maxAge: 5 * 60 // Cache duration in seconds
-//     }
-//   },
-//   user: {
-//     additionalFields: {
-//       premium: {
-//         type: "boolean",
-//         required: false,
-//       },
-//     },
-//     changeEmail: {
-//       enabled: true,
-//       sendChangeEmailVerification: async ({ newEmail, url }) => {
-//         await sendEmail({
-//           app_name: "Firmmall",
-//           to: newEmail,
-//           subject: 'Verify your email change',
-//           text: `Click the link to verify: ${url}`,
-//           html: `<a href=${url}>Click here to verify</a>`
-//         })
-//       }
-//     }
-//   },
-//   socialProviders: {
-//     google: {
-//       clientId: process.env.GOOGLE_CLIENT_ID as string,
-//       clientSecret: process.env.GOOGLE_CLIENT_SECRET as string,
-//     },
-//   },
-//   plugins: [openAPI(), admin({
-//     impersonationSessionDuration: 60 * 60 * 24 * 7, // 7 days
-//   })], // api/auth/reference
-//   emailAndPassword: {
-//     enabled: true,
-//     requireEmailVerification: false,
-//     sendResetPassword: async ({ user, url, token }) => {
-//       await sendEmail({
-//         app_name: "Firmmall",
-//         to: user.email,
-//         subject: "Reset your password",
-//         text: `Click the link to reset your password: ${url}`,
-//         html: `<a href=${url}>Click the here to reset your password.</a>`
-//       });
-//     },
-//     // onPasswordReset: async ({ user }, request) => {
-//     //   // your logic here
-//     //   console.log(`Password for user ${user.email} has been reset.`);
-//     // },
-//   },
-//   emailVerification: {
-//     sendOnSignUp: true,
-//     autoSignInAfterVerification: true,
-//     sendVerificationEmail: async ({ user, token }) => {
-//       const verificationUrl = `${process.env.BETTER_AUTH_URL}/api/auth/verify-email?token=${token}&callbackURL=${process.env.EMAIL_VERIFICATION_CALLBACK_URL}`;
-//       await sendEmail({
-//         app_name: "Firmmall",
-//         to: user.email,
-//         subject: "Verify your email address",
-//         text: `Click the link to verify your email: ${verificationUrl}`,
-//         html: `<a href=${verificationUrl}>Click the here to reset your password.</a>`
-//       });
-//     },
-//   }
-// } satisfies BetterAuthOptions);
-
-// export type Session = typeof auth.$Infer.Session;
