@@ -14,7 +14,7 @@ export async function GET(req: NextRequest) {
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 })
     }
 
-    const clinician = await prisma.clinician.findUnique({
+    const clinician = await prisma.clinician.findFirst({
       where: { userId: session.user.id },
       include: { user: true },
     })
@@ -56,8 +56,16 @@ export async function PUT(req: NextRequest) {
 
     const body = await req.json()
 
-    const clinician = await prisma.clinician.update({
+    const existingClinician = await prisma.clinician.findFirst({
       where: { userId: session.user.id },
+    })
+
+    if (!existingClinician) {
+      return NextResponse.json({ error: "Clinician profile not found" }, { status: 404 })
+    }
+
+    const clinician = await prisma.clinician.update({
+      where: { id: existingClinician.id },
       data: {
         firstName: body.firstName,
         lastName: body.lastName,
