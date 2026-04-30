@@ -35,7 +35,7 @@ export default function BookingPage() {
   }
 
   const handleSubmit = async () => {
-    console.log('Submitting booking:', formState)
+    // console.log('Submitting booking:', formState)
     setIsSubmitting(true)
     try {
       const res = await fetch('/api/booking', {

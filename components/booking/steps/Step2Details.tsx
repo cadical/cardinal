@@ -92,8 +92,8 @@ export default function Step2Details({ state, onChange, onNext, onBack }: Step2P
                 key={id}
                 className={`relative border-[1.5px] rounded-[10px] p-3.5 cursor-pointer overflow-hidden transition-colors duration-200 flex items-center gap-2.5 ${
                   isSelected
-                    ? 'border-c-blue bg-c-blue-light'
-                    : 'border-c-border hover:border-c-blue'
+                    ? 'border-blue-600 bg-blue-400'
+                    : 'border-c-border hover:border-blue-600'
                 }`}
                 onClick={() => handleCallerType(id)}
                 whileHover="hover"
@@ -101,7 +101,7 @@ export default function Step2Details({ state, onChange, onNext, onBack }: Step2P
                 animate={isSelected ? 'selected' : 'rest'}
               >
                 <motion.div
-                  className="absolute bottom-0 left-0 right-0 h-[2px] bg-c-blue origin-left"
+                  className="absolute bottom-0 left-0 right-0 h-[2px] bg-blue-600 origin-left"
                   variants={{
                     rest: { scaleX: 0 },
                     hover: { scaleX: 1 },
@@ -211,14 +211,14 @@ export default function Step2Details({ state, onChange, onNext, onBack }: Step2P
       <div className="flex justify-between items-center mt-7 pt-6 border-t border-c-border">
         <motion.button
           onClick={onBack}
-          className="inline-flex items-center gap-1.5 px-6 py-[11px] bg-transparent text-c-muted border-[1.5px] border-c-border rounded-lg text-[14px] font-semibold cursor-pointer transition-all duration-200 hover:border-c-blue hover:text-c-blue"
+          className="inline-flex items-center gap-1.5 px-6 py-[11px] bg-transparent text-c-muted border-[1.5px] border-c-border rounded-lg text-[14px] font-semibold cursor-pointer transition-all duration-200 hover:border-blue-400 hover:text-blue-600"
           whileTap={{ scale: 0.97 }}
         >
           ← Back
         </motion.button>
         <motion.button
           onClick={handleNext}
-          className="inline-flex items-center gap-1.5 px-6 py-[11px] bg-c-blue text-white rounded-lg text-[14px] font-semibold cursor-pointer transition-all duration-200 hover:bg-c-blue-dark hover:shadow-btn-blue hover:-translate-y-px"
+          className="inline-flex items-center gap-1.5 px-6 py-[11px] bg-blue-400 text-white rounded-lg text-[14px] font-semibold cursor-pointer transition-all duration-200 hover:bg-blue-600 hover:shadow-btn-blue hover:-translate-y-px"
           whileTap={{ scale: 0.97 }}
         >
           Continue → Date & Time

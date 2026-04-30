@@ -98,8 +98,8 @@ export default function Step3DateTime({ state, onChange, onNext, onBack }: Step3
                 key={id}
                 className={`relative border-[1.5px] rounded-[10px] p-3.5 cursor-pointer overflow-hidden transition-colors duration-200 flex items-center gap-3 ${
                   isSelected
-                    ? 'border-c-blue bg-c-blue-light'
-                    : 'border-c-border hover:border-c-blue'
+                    ? 'border-blue-400 bg-blue-100'
+                    : 'border-c-border hover:border-blue-400'
                 }`}
                 onClick={() => handleBookingType(id)}
                 whileHover="hover"
@@ -107,7 +107,7 @@ export default function Step3DateTime({ state, onChange, onNext, onBack }: Step3
                 animate={isSelected ? 'selected' : 'rest'}
               >
                 <motion.div
-                  className="absolute bottom-0 left-0 right-0 h-[2px] bg-c-blue origin-left"
+                  className="absolute bottom-0 left-0 right-0 h-[2px] bg-blue-400 origin-left"
                   variants={{
                     rest: { scaleX: 0 },
                     hover: { scaleX: 1 },
@@ -171,8 +171,8 @@ export default function Step3DateTime({ state, onChange, onNext, onBack }: Step3
                       key={slot.label}
                       className={`relative border-[1.5px] rounded-lg px-2 py-2.5 text-center text-[13px] font-medium cursor-pointer overflow-hidden transition-colors duration-200 ${
                         isSelected
-                          ? 'bg-c-blue border-c-blue text-white font-semibold'
-                          : 'border-c-border text-c-text hover:border-c-blue hover:text-c-blue hover:bg-c-blue-light'
+                          ? 'bg-blue-400 border-blue-400 text-white font-semibold'
+                          : 'border-c-border text-c-text hover:border-blue-400 hover:text-blue-400 hover:bg-blue-100'
                       }`}
                       onClick={() => onChange({ selectedSlot: slot.label })}
                       whileHover={isSelected ? undefined : 'hover'}
@@ -180,7 +180,7 @@ export default function Step3DateTime({ state, onChange, onNext, onBack }: Step3
                       animate={isSelected ? 'selected' : 'rest'}
                     >
                       <motion.div
-                        className="absolute bottom-0 left-0 right-0 h-[2px] bg-c-blue origin-left"
+                        className="absolute bottom-0 left-0 right-0 h-[2px] bg-blue-400 origin-left"
                         variants={{
                           rest: { scaleX: 0 },
                           hover: { scaleX: 1 },
@@ -258,14 +258,14 @@ export default function Step3DateTime({ state, onChange, onNext, onBack }: Step3
       <div className="flex justify-between items-center mt-7 pt-6 border-t border-c-border">
         <motion.button
           onClick={onBack}
-          className="inline-flex items-center gap-1.5 px-6 py-[11px] bg-transparent text-c-muted border-[1.5px] border-c-border rounded-lg text-[14px] font-semibold cursor-pointer transition-all duration-200 hover:border-c-blue hover:text-c-blue"
+          className="inline-flex items-center gap-1.5 px-6 py-[11px] bg-transparent text-c-muted border-[1.5px] border-c-border rounded-lg text-[14px] font-semibold cursor-pointer transition-all duration-200 hover:border-blue-400 hover:text-blue-600"
           whileTap={{ scale: 0.97 }}
         >
           ← Back
         </motion.button>
         <motion.button
           onClick={handleNext}
-          className="inline-flex items-center gap-1.5 px-6 py-[11px] bg-c-blue text-white rounded-lg text-[14px] font-semibold cursor-pointer transition-all duration-200 hover:bg-c-blue-dark hover:shadow-btn-blue hover:-translate-y-px"
+          className="inline-flex items-center gap-1.5 px-6 py-[11px] bg-blue-400 text-white rounded-lg text-[14px] font-semibold cursor-pointer transition-all duration-200 hover:bg-blue-600 hover:shadow-btn-blue hover:-translate-y-px"
           whileTap={{ scale: 0.97 }}
         >
           Review Booking →

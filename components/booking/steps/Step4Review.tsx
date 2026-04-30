@@ -97,7 +97,7 @@ export default function Step4Review({ state, onBack, onSubmit, isSubmitting }: S
         <motion.button
           onClick={onBack}
           disabled={isSubmitting}
-          className="inline-flex items-center gap-1.5 px-6 py-[11px] bg-transparent text-c-muted border-[1.5px] border-c-border rounded-lg text-[14px] font-semibold cursor-pointer transition-all duration-200 hover:border-c-blue hover:text-c-blue disabled:opacity-50"
+          className="inline-flex items-center gap-1.5 px-6 py-[11px] bg-transparent text-c-muted border-[1.5px] border-c-border rounded-lg text-[14px] font-semibold cursor-pointer transition-all duration-200 hover:border-blue-400 hover:text-blue-400 disabled:opacity-50"
           whileTap={{ scale: 0.97 }}
         >
           ← Back
@@ -105,7 +105,7 @@ export default function Step4Review({ state, onBack, onSubmit, isSubmitting }: S
         <motion.button
           onClick={onSubmit}
           disabled={isSubmitting}
-          className="inline-flex items-center gap-1.5 px-6 py-[11px] bg-c-green text-white rounded-lg text-[14px] font-semibold cursor-pointer transition-all duration-200 hover:bg-[#1b5e20] hover:-translate-y-px disabled:opacity-70 disabled:cursor-not-allowed disabled:transform-none"
+          className="inline-flex items-center gap-1.5 px-6 py-[11px] bg-green-600 text-white rounded-lg text-[14px] font-semibold cursor-pointer transition-all duration-200 hover:bg-[#1b5e20] hover:-translate-y-px disabled:opacity-70 disabled:cursor-not-allowed disabled:transform-none"
           whileTap={{ scale: 0.97 }}
         >
           {isSubmitting ? (
