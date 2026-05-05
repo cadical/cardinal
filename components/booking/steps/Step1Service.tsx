@@ -2,6 +2,7 @@
 
 import { motion, AnimatePresence } from 'framer-motion'
 import type { BookingFormState, ServiceType, UrgencyType, FormatType } from '@/lib/types/booking'
+import { Label } from '@/components/ui/label'
 
 interface Step1Props {
   state: BookingFormState
@@ -185,9 +186,9 @@ export default function Step1Service({ state, onChange, onNext }: Step1Props) {
 
             {/* Urgency */}
             <div className="mb-[18px]">
-              <label className="block text-[12.5px] font-semibold text-c-text mb-1.5">
+              <Label className="block text-[12.5px] font-semibold text-c-text mb-1.5">
                 Urgency
-              </label>
+              </Label>
               <div className="grid grid-cols-3 gap-2.5">
                 {[
                   { id: 'routine' as UrgencyType, icon: '📅', label: 'Routine', sub: 'Within 1 week' },
@@ -201,9 +202,9 @@ export default function Step1Service({ state, onChange, onNext }: Step1Props) {
                       className={`relative border-[1.5px] rounded-lg px-3 py-2.5 cursor-pointer text-center overflow-hidden transition-colors duration-200 ${
                         isSelected
                           ? isUrgent
-                            ? 'urgency-urgent-selected border-c-red'
-                            : 'border-c-blue bg-c-blue-light'
-                          : 'border-c-border hover:border-c-blue'
+                            ? 'urgency-urgent-selected border-red-400'
+                            : 'border-c-blue bg-blue-500'
+                          : 'border-2-blue-400 hover:border-blue-600'
                       }`}
                       onClick={() => handleUrgency(id)}
                       whileHover="hover"
@@ -242,9 +243,9 @@ export default function Step1Service({ state, onChange, onNext }: Step1Props) {
             className="overflow-hidden"
           >
             <div className="mb-[18px]">
-              <label className="block text-[12.5px] font-semibold text-c-text mb-1.5">
+              <Label className="block text-[12.5px] font-semibold text-c-text mb-1.5">
                 Consultation Type *
-              </label>
+              </Label>
               <select
                 value={state.consultType}
                 onChange={(e) => onChange({ consultType: e.target.value })}
@@ -261,9 +262,9 @@ export default function Step1Service({ state, onChange, onNext }: Step1Props) {
 
             {/* Format toggle */}
             <div className="mb-[18px]">
-              <label className="block text-[12.5px] font-semibold text-c-text mb-1.5">
+              <Label className="block text-[12.5px] font-semibold text-c-text mb-1.5">
                 Preferred Format
-              </label>
+              </Label>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                 {[
                   { id: 'physical' as FormatType, icon: '🏥', label: 'Physical Visit', sub: 'We come to your location' },
@@ -290,9 +291,9 @@ export default function Step1Service({ state, onChange, onNext }: Step1Props) {
 
       {/* Notes */}
       <div className="mb-[18px]">
-        <label className="block text-[12.5px] font-semibold text-c-text mb-1.5">
+        <Label className="block text-[12.5px] font-semibold text-c-text mb-1.5">
           Additional Notes <span className="font-normal text-c-muted text-[11px] ml-1">(optional)</span>
-        </label>
+        </Label>
         <textarea
           value={state.notes}
           onChange={(e) => onChange({ notes: e.target.value })}
