@@ -1,7 +1,7 @@
 
 "use client";
 
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import {
   Card,
   CardContent,
@@ -27,14 +27,7 @@ import {
 } from "@/components/ui/tabs";
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 
-type Product = {
-  id: string;
-  name: string;
-  description?: string;
-  price: number;
-  stock: number;
-  sku: string;
-};
+
 
 type Order = {
   id: string;
@@ -48,11 +41,9 @@ type Order = {
 // ===============================
 
 export default function EcommerceDashboard() {
-  const [products, setProducts] = useState<Product[]>([]);
   const [orders, setOrders] = useState<Order[]>([]);
 
   const [open, setOpen] = useState(false);
-  const [editingProduct, setEditingProduct] = useState<Product | null>(null);
 
   const [form, setForm] = useState({
     name: "",
@@ -62,15 +53,7 @@ export default function EcommerceDashboard() {
     sku: "",
   });
 
-  // ===============================
-  // FETCH DATA
-  // ===============================
-
-  async function loadProducts() {
-    const res = await fetch("/api/products");
-    const data = await res.json();
-    setProducts(data);
-  }
+  
 
   async function loadOrders() {
     const res = await fetch("/api/orders");
@@ -79,31 +62,17 @@ export default function EcommerceDashboard() {
   }
 
   useEffect(() => {
-    loadProducts();
     loadOrders();
   }, []);
 
-  // ===============================
-  // PRODUCT CRUD
-  // ===============================
+
 
   function openCreate() {
-    setEditingProduct(null);
-    setForm({ name: "", description: "", price: "", stock: "", sku: "" });
+
     setOpen(true);
   }
 
-  function openEdit(product: Product) {
-    setEditingProduct(product);
-    setForm({
-      name: product.name,
-      description: product.description || "",
-      price: String(product.price),
-      stock: String(product.stock),
-      sku: product.sku,
-    });
-    setOpen(true);
-  }
+ 
 
 
 
@@ -111,7 +80,7 @@ export default function EcommerceDashboard() {
  
   return (
     <div className="p-6 space-y-6">
-      <h1 className="text-2xl font-bold">Ecommerce Dashboard</h1>
+      <h1 className="text-2xl font-bold"> Dashboard</h1>
 
       <Tabs defaultValue="orders">
         <TabsList>
