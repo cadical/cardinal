@@ -112,6 +112,23 @@
   --sidebar-ring: oklch(0.439 0 0);
 }
 
+.segment {
+  transition: all 0.3s ease;
+}
+
+.draw {
+  animation: drawLine 0.8s ease forwards;
+}
+
+@keyframes drawLine {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+.animate-line {
+  animation: drawLine 1.5s ease forwards;
+}
 
 @layer base {
   * {

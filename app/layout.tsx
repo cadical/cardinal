@@ -2,6 +2,7 @@ import { Navbar } from "@/components/navbar";
 import "./globals.css";
 import { Manrope, Fraunces } from "next/font/google";
 import { Footer } from "@/components/footer";
+import WhatsAppButton from "@/components/whatsapp-button";
 
 const manrope = Manrope({ subsets: ["latin"], variable: "--font-sans" });
 const fraunces = Fraunces({ subsets: ["latin"], variable: "--font-serif" });
@@ -18,6 +19,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <body className="bg-[#FBFAF7] text-[#1A1A18] font-sans">
         <Navbar />
         {children}
+        <WhatsAppButton />
         <Footer />
       </body>
     </html>

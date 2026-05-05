@@ -1,21 +1,24 @@
 export default function CTA() {
-    return (
-        <section id="contact" className="py-20 px-6 md:px-12 text-center">
-        <h2 className="text-3xl font-serif font-bold mb-4">
-          Ready to work with <span className="text-[#1565C0]">Cadical?</span>
+  return (
+    <section id="contact" className="bg-teal-900 text-white py-20 px-5 text-center">
+      <div className="max-w-3xl mx-auto">
+        <h2 className="font-serif text-4xl mb-4">
+          Ready to work <span className="italic text-teal-soft">with Cadical?</span>
         </h2>
 
-        <div className="flex flex-wrap justify-center gap-3 mb-6">
-          <button className="bg-[#1565C0] text-white px-6 py-3 rounded-md">Shop Pharmacy</button>
-          <button className="border px-6 py-3 rounded-md">Portal</button>
-          <button className="bg-[#F5A623] text-white px-6 py-3 rounded-md">Book Service</button>
-        </div>
+        <p className="mb-6 text-white/70">
+          Open an account or talk to a specialist.
+        </p>
 
-        <div className="flex justify-center gap-6 text-sm text-[#6b7c93] flex-wrap">
-          <span>📞 +234 707 617 5550</span>
-          <span>💬 WhatsApp</span>
-          <span>📱 @cadicalsolutions</span>
+        <div className="flex justify-center gap-4 flex-wrap">
+          <button className="bg-white text-teal-deep px-6 py-3 rounded-full">
+            Open account
+          </button>
+          <a href="https://wa.me/2347076175550" className="border px-6 py-3 rounded-full">
+            WhatsApp
+          </a>
         </div>
-      </section>
-    )
+      </div>
+    </section>
+  );
 }

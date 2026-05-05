@@ -3,6 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
 import { Menu, X } from "lucide-react";
+import { Button } from "./ui/button";
 
 export function Navbar() {
   const [open, setOpen] = useState(false);
@@ -33,19 +34,24 @@ export function Navbar() {
       </div>
 
       {/* DESKTOP LINKS */}
-      <div className="hidden md:flex gap-8 text-sm text-[#6b7c93]">
+      <div className="hidden md:flex md:text-center md:justify-center gap-8 text-sm text-[#6b7c93]">
         <a href="#portals" className="hover:text-[#1565C0]">What We Offer</a>
         <a href="#services" className="hover:text-[#1565C0]">Services</a>
         <a href="#why" className="hover:text-[#1565C0]">Why Cadical</a>
         <a href="#contact" className="hover:text-[#1565C0]">Contact</a>
         <a href="#compliance" className="hover:text-[#1565C0]">Compliance</a>
+        <Link href="/products?type=institutional" className="hover:text-[#1565C0]">
+        <Button variant="outline" className="border border-[#1565C0] text-[#1565C0] px-4 py-2 rounded-full text-sm font-semibold hover:bg-[#1565C0] hover:text-white transition">
+          Institutional Portal
+        </Button>
+        </Link>
       </div>
 
       {/* DESKTOP CTA */}
       <div className="hidden md:flex gap-3">
-        <button className="border border-[#1565C0] text-[#1565C0] px-4 py-2 rounded text-sm font-semibold hover:bg-[#1565C0] hover:text-white transition">
-          Institutional Portal
-        </button>
+        <Link href={'/booking'} className="border border-[#1565C0] text-[#1565C0] px-4 py-2 rounded text-sm font-semibold hover:bg-[#1565C0] hover:text-white transition">
+          Book Now
+        </Link>
 
         <Link
           href="/products"

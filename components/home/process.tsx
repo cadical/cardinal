@@ -1,30 +1,30 @@
-
 export default function Process() {
-    return (
-        <section className="py-20 px-6 md:px-12 bg-[#0d47a1] text-white relative overflow-hidden">
-        <div className="absolute inset-0 opacity-20"
-          style={{
-            backgroundImage: `
-              linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px),
-              linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px)
-            `,
-            backgroundSize:"60px 60px"
-          }}
-        />
+  const steps = [
+    { title: "Choose", text: "Browse or upload order list" },
+    { title: "Verify", text: "Pharmacist confirms compliance" },
+    { title: "Dispatch", text: "Same-day or nationwide delivery" },
+    { title: "Receive", text: "Track and receive invoice" },
+  ];
 
-        <div className="text-center mb-12 relative z-10">
-          <h2 className="text-3xl font-serif font-bold">Simple from start to finish.</h2>
-        </div>
+  return (
+    <section className="px-5 py-20">
+      <div className="max-w-6xl mx-auto">
+        <h2 className="font-serif text-3xl mb-10">
+          Simple from start <span className="italic text-teal">to finish.</span>
+        </h2>
 
-        <div className="grid md:grid-cols-4 gap-8 relative z-10">
-          {["Choose","Order","We Deliver","Done"].map((t,i)=>(
-            <div key={i} className="text-center">
-              <div className="w-14 h-14 bg-[#F5A623] rounded-full flex items-center justify-center mx-auto mb-4 font-bold">{i+1}</div>
-              <h4 className="mb-2">{t}</h4>
-              <p className="text-white/60 text-sm">Step description</p>
+        <div className="grid md:grid-cols-4 gap-6">
+          {steps.map((s, i) => (
+            <div key={i}>
+              <div className="w-12 h-12 rounded-full border flex items-center justify-center text-teal font-serif mb-4">
+                {i + 1}
+              </div>
+              <h4 className="font-serif text-lg">{s.title}</h4>
+              <p className="text-sm text-gray-600">{s.text}</p>
             </div>
           ))}
         </div>
-      </section>
-    )
+      </div>
+    </section>
+  );
 }
