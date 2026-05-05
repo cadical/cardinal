@@ -12,6 +12,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { authClient } from "@/lib/auth-client"
 import Image from "next/image"
+import { toast } from "sonner"
 // import { Alert, AlertDescription } from "@/components/ui/alert"
 // import { AlertCircle, CheckCircle2 } from "lucide-react"
 // import { auth } from "@/lib/auth"
@@ -107,10 +108,13 @@ export default function RegisterPage() {
           password: formData.password,
         
       })
+
+      
  
 
       if (!userResponse) {
-        throw new Error("Failed to create account")
+        // throw new Error("Failed to create account")
+        toast.error("Failed to create account")
       }
 
       const userData =  userResponse.data?.user;
@@ -135,11 +139,12 @@ export default function RegisterPage() {
       }
 
       setSuccess("Registration successful! Redirecting to your profile...")
-      setTimeout(() => {
-        router.push("/clinician/profile")
-      }, 2000)
+      // setTimeout(() => {
+      //   router.push("/clinician/profile")
+      // }, 2000)
     } catch (err) {
       setError(err instanceof Error ? err.message : "Registration failed")
+      toast.error(err instanceof Error ? err.message : "Registration failed")
     } finally {
       setIsLoading(false)
     }

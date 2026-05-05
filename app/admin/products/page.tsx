@@ -27,6 +27,10 @@ import {
 } from "@/components/ui/tabs";
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 
+// ===============================
+// TYPES
+// ===============================
+
 type Product = {
   id: string;
   name: string;
@@ -105,10 +109,38 @@ export default function EcommerceDashboard() {
     setOpen(true);
   }
 
+  async function saveProduct() {
+    const payload = {
+      ...form,
+      price: Number(form.price),
+      stock: Number(form.stock),
+    };
 
+    if (editingProduct) {
+      await fetch(`/api/products/${editingProduct.id}`, {
+        method: "PUT",
+        body: JSON.stringify(payload),
+      });
+    } else {
+      await fetch("/api/products", {
+        method: "POST",
+        body: JSON.stringify(payload),
+      });
+    }
 
+    setOpen(false);
+    loadProducts();
+  }
 
- 
+  async function deleteProduct(id: string) {
+    await fetch(`/api/products/${id}`, { method: "DELETE" });
+    loadProducts();
+  }
+
+  // ===============================
+  // UI
+  // ===============================
+
   return (
     <div className="p-6 space-y-6">
       <h1 className="text-2xl font-bold">Ecommerce Dashboard</h1>
@@ -118,7 +150,7 @@ export default function EcommerceDashboard() {
           <TabsTrigger value="orders">Orders</TabsTrigger>
           <TabsTrigger value="profile">Profile</TabsTrigger>
           <TabsTrigger value="address">Address</TabsTrigger>
-          {/* <TabsTrigger value="admin">Admin Products</TabsTrigger> */}
+          <TabsTrigger value="admin">Admin Products</TabsTrigger>
         </TabsList>
 
         {/* ORDERS */}
@@ -179,10 +211,92 @@ export default function EcommerceDashboard() {
           </Card>
         </TabsContent>
 
-       
+        {/* ADMIN PRODUCTS */}
+        <TabsContent value="admin">
+          <Card>
+            <CardHeader className="flex flex-row justify-between">
+              <CardTitle>Products</CardTitle>
+              <Button onClick={openCreate}>Add Product</Button>
+            </CardHeader>
+            <CardContent>
+              <Table>
+                <TableHeader>
+                  <TableRow>
+                    <TableHead>Name</TableHead>
+                    <TableHead>SKU</TableHead>
+                    <TableHead>Price</TableHead>
+                    <TableHead>Stock</TableHead>
+                    <TableHead>Actions</TableHead>
+                  </TableRow>
+                </TableHeader>
+                <TableBody>
+                  {products.map((p) => (
+                    <TableRow key={p.id}>
+                      <TableCell>{p.name}</TableCell>
+                      <TableCell>{p.sku}</TableCell>
+                      <TableCell>${p.price}</TableCell>
+                      <TableCell>{p.stock}</TableCell>
+                      <TableCell className="space-x-2">
+                        <Button variant="outline" onClick={() => openEdit(p)}>
+                          Edit
+                        </Button>
+                        <Button variant="destructive" onClick={() => deleteProduct(p.id)}>
+                          Delete
+                        </Button>
+                      </TableCell>
+                    </TableRow>
+                  ))}
+                </TableBody>
+              </Table>
+            </CardContent>
+          </Card>
+        </TabsContent>
       </Tabs>
 
-      
+      {/* PRODUCT MODAL */}
+      <Dialog open={open} onOpenChange={setOpen}>
+        <DialogContent>
+          <DialogHeader>
+            <DialogTitle>
+              {editingProduct ? "Edit Product" : "Create Product"}
+            </DialogTitle>
+          </DialogHeader>
+
+          <div className="space-y-3">
+            <Input
+              placeholder="Name"
+              value={form.name}
+              onChange={(e) => setForm({ ...form, name: e.target.value })}
+            />
+            <Textarea
+              placeholder="Description"
+              value={form.description}
+              onChange={(e) => setForm({ ...form, description: e.target.value })}
+            />
+            <Input
+              placeholder="SKU"
+              value={form.sku}
+              onChange={(e) => setForm({ ...form, sku: e.target.value })}
+            />
+            <Input
+              type="number"
+              placeholder="Price"
+              value={form.price}
+              onChange={(e) => setForm({ ...form, price: e.target.value })}
+            />
+            <Input
+              type="number"
+              placeholder="Stock"
+              value={form.stock}
+              onChange={(e) => setForm({ ...form, stock: e.target.value })}
+            />
+
+            <Button className="w-full" onClick={saveProduct}>
+              Save
+            </Button>
+          </div>
+        </DialogContent>
+      </Dialog>
       </div>
     );
     }
