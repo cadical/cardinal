@@ -7,7 +7,7 @@ import { motion } from "framer-motion";
 const items = [
   { tag: "CAC", title: "Corporate Affairs Commission", id: "RC 8969474" },
   { tag: "NAFDAC", title: "Drug compliance", id: "Per-SKU" },
-  { tag: "PCN", title: "Pharmacist oversight", id: "License pending" },
+  // { tag: "PCN", title: "Pharmacist oversight", id: "License pending" },
   { tag: "NDPA", title: "Data protection", id: "privacy@cadical.com" },
 ];
 

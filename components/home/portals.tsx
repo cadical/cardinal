@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import Link from "next/link";
 
 export default function Portals() {
 
@@ -49,7 +50,7 @@ export default function Portals() {
             <motion.div key={i} whileHover={{y:-6}}
               className="bg-white border border-[#e4eaf2] rounded-xl overflow-hidden flex flex-col hover:shadow-xl">
 
-              <div className="p-6 flex-1">
+              <Link href={'/booking'} className="p-6 flex-1">
                 <div className="text-3xl mb-4">{c.icon}</div>
                 <div className="text-xs uppercase text-[#6b7c93] mb-2">{c.sub}</div>
                 <h3 className="font-serif font-bold mb-2">{c.title}</h3>
@@ -61,7 +62,7 @@ export default function Portals() {
                     </li>
                   ))}
                 </ul>
-              </div>
+              </Link>
 
               <div className="bg-[#f8fafc] border-t border-[#e4eaf2] px-6 py-4 text-[#1565C0] font-semibold flex justify-between">
                 Explore <span>→</span>
