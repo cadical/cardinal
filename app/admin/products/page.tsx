@@ -1,4 +1,3 @@
-
 "use client";
 
 import React, { useEffect, useState } from "react";
@@ -38,6 +37,7 @@ type Product = {
   price: number;
   stock: number;
   sku: string;
+  imageUrl?: string;
 };
 
 type Order = {
@@ -58,12 +58,15 @@ export default function EcommerceDashboard() {
   const [open, setOpen] = useState(false);
   const [editingProduct, setEditingProduct] = useState<Product | null>(null);
 
+  const [uploading, setUploading] = useState(false);
+
   const [form, setForm] = useState({
     name: "",
     description: "",
     price: "",
     stock: "",
     sku: "",
+    imageUrl: "",
   });
 
   // ===============================
@@ -88,12 +91,45 @@ export default function EcommerceDashboard() {
   }, []);
 
   // ===============================
+  // IMAGE UPLOAD (YOUR API)
+  // ===============================
+
+  async function uploadImage(file: File) {
+    setUploading(true);
+
+    const formData = new FormData();
+    formData.append("file", file);
+
+    const res = await fetch("/api/upload", {
+      method: "POST",
+      body: formData,
+    });
+
+    if (!res.ok) {
+      setUploading(false);
+      throw new Error("Upload failed");
+    }
+
+    const data = await res.json();
+    setUploading(false);
+
+    return data.url as string;
+  }
+
+  // ===============================
   // PRODUCT CRUD
   // ===============================
 
   function openCreate() {
     setEditingProduct(null);
-    setForm({ name: "", description: "", price: "", stock: "", sku: "" });
+    setForm({
+      name: "",
+      description: "",
+      price: "",
+      stock: "",
+      sku: "",
+      imageUrl: "",
+    });
     setOpen(true);
   }
 
@@ -105,6 +141,7 @@ export default function EcommerceDashboard() {
       price: String(product.price),
       stock: String(product.stock),
       sku: product.sku,
+      imageUrl: product.imageUrl || "",
     });
     setOpen(true);
   }
@@ -119,11 +156,13 @@ export default function EcommerceDashboard() {
     if (editingProduct) {
       await fetch(`/api/products/${editingProduct.id}`, {
         method: "PUT",
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify(payload),
       });
     } else {
       await fetch("/api/products", {
         method: "POST",
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify(payload),
       });
     }
@@ -211,17 +250,19 @@ export default function EcommerceDashboard() {
           </Card>
         </TabsContent>
 
-        {/* ADMIN PRODUCTS */}
+        {/* PRODUCTS */}
         <TabsContent value="admin">
           <Card>
-            <CardHeader className="flex flex-row justify-between">
+            <CardHeader className="flex flex-row justify-between items-center">
               <CardTitle>Products</CardTitle>
               <Button onClick={openCreate}>Add Product</Button>
             </CardHeader>
+
             <CardContent>
               <Table>
                 <TableHeader>
                   <TableRow>
+                    <TableHead>Image</TableHead>
                     <TableHead>Name</TableHead>
                     <TableHead>SKU</TableHead>
                     <TableHead>Price</TableHead>
@@ -229,18 +270,34 @@ export default function EcommerceDashboard() {
                     <TableHead>Actions</TableHead>
                   </TableRow>
                 </TableHeader>
+
                 <TableBody>
                   {products.map((p) => (
                     <TableRow key={p.id}>
+                      <TableCell>
+                        {p.imageUrl ? (
+                          <img
+                            src={p.imageUrl}
+                            className="w-10 h-10 object-cover rounded"
+                          />
+                        ) : (
+                          "-"
+                        )}
+                      </TableCell>
+
                       <TableCell>{p.name}</TableCell>
                       <TableCell>{p.sku}</TableCell>
                       <TableCell>${p.price}</TableCell>
                       <TableCell>{p.stock}</TableCell>
+
                       <TableCell className="space-x-2">
                         <Button variant="outline" onClick={() => openEdit(p)}>
                           Edit
                         </Button>
-                        <Button variant="destructive" onClick={() => deleteProduct(p.id)}>
+                        <Button
+                          variant="destructive"
+                          onClick={() => deleteProduct(p.id)}
+                        >
                           Delete
                         </Button>
                       </TableCell>
@@ -266,30 +323,72 @@ export default function EcommerceDashboard() {
             <Input
               placeholder="Name"
               value={form.name}
-              onChange={(e) => setForm({ ...form, name: e.target.value })}
+              onChange={(e) =>
+                setForm({ ...form, name: e.target.value })
+              }
             />
+
             <Textarea
               placeholder="Description"
               value={form.description}
-              onChange={(e) => setForm({ ...form, description: e.target.value })}
+              onChange={(e) =>
+                setForm({ ...form, description: e.target.value })
+              }
             />
+
             <Input
               placeholder="SKU"
               value={form.sku}
-              onChange={(e) => setForm({ ...form, sku: e.target.value })}
+              onChange={(e) =>
+                setForm({ ...form, sku: e.target.value })
+              }
             />
+
             <Input
               type="number"
               placeholder="Price"
               value={form.price}
-              onChange={(e) => setForm({ ...form, price: e.target.value })}
+              onChange={(e) =>
+                setForm({ ...form, price: e.target.value })
+              }
             />
+
             <Input
               type="number"
               placeholder="Stock"
               value={form.stock}
-              onChange={(e) => setForm({ ...form, stock: e.target.value })}
+              onChange={(e) =>
+                setForm({ ...form, stock: e.target.value })
+              }
             />
+
+            {/* IMAGE UPLOAD */}
+            <div className="space-y-2">
+              <Input
+                type="file"
+                accept="image/*"
+                onChange={async (e) => {
+                  const file = e.target.files?.[0];
+                  if (!file) return;
+
+                  const url = await uploadImage(file);
+                  setForm((prev) => ({ ...prev, imageUrl: url }));
+                }}
+              />
+
+              {uploading && (
+                <p className="text-sm text-muted-foreground">
+                  Uploading image...
+                </p>
+              )}
+
+              {form.imageUrl && (
+                <img
+                  src={form.imageUrl}
+                  className="w-full h-40 object-cover rounded"
+                />
+              )}
+            </div>
 
             <Button className="w-full" onClick={saveProduct}>
               Save
@@ -297,10 +396,6 @@ export default function EcommerceDashboard() {
           </div>
         </DialogContent>
       </Dialog>
-      </div>
-    );
-    }
-
-      
-
-     
+    </div>
+  );
+}
