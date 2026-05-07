@@ -57,7 +57,7 @@ export function Navbar() {
           href="/products"
           className="bg-[#1565C0] text-white px-4 py-2 rounded text-sm font-semibold hover:bg-[#0d47a1] transition"
         >
-          Shop Now
+          MediStore
         </Link>
       </div>
 
