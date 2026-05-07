@@ -51,16 +51,16 @@ export default function Portals() {
             }
           ].map((c,i)=>(
             <motion.div key={i} whileHover={{y:-6}}
-              className="bg-white border border-[#e4eaf2] rounded-xl overflow-hidden flex flex-col hover:shadow-xl">
+              className="bg-white border border-[#e4eaf2] rounded-xl overflow-hidden flex flex-col hover:shadow-xl ">
 
               
-                <div className="text-3xl mb-4">{c.icon}</div>
-                <div className="text-xs uppercase text-[#6b7c93] mb-2">{c.sub}</div>
-                <h3 className="font-serif font-bold mb-2">{c.title}</h3>
+                <div className="text-3xl mb-4 p-2">{c.icon}</div>
+                <div className="text-xs uppercase text-[#6b7c93] mb-2 px-2">{c.sub}</div>
+                <h3 className="font-serif font-bold mb-2 px-2">{c.title}</h3>
 
                 <ul>
                   {c.features.map((f,idx)=>(
-                    <li key={idx} className="py-2 border-b border-[#e4eaf2] flex gap-2">
+                    <li key={idx} className="py-2 border-b border-[#e4eaf2] flex gap-2 px-2">
                       <span className="text-[#1565C0]">✓</span>{f}
                     </li>
                   ))}

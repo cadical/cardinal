@@ -24,7 +24,7 @@ export default function Hero() {
             animate={{ opacity: 1, y: 0 }}
             className="inline-block text-[#F5A623] text-xs font-semibold tracking-widest uppercase border border-[#F5A623]/30 bg-[#F5A623]/10 px-4 py-1 rounded-full mb-6"
           >
-            🇳🇬 Reliable Healthcare supply
+            🇳🇬 Nigeria's healthcare supply partner
             
           </motion.div>
 
@@ -33,8 +33,10 @@ export default function Hero() {
             animate={{ opacity: 1, y: 0 }}
             className="text-white text-5xl md:text-6xl font-bold leading-tight font-serif mb-5"
           >
-            delivered with<br />care.<br />
-            <span className="text-[#F5A623]">supply.</span>
+            Reliable healthcare supply,
+            delivered with<br />
+            <span className="text-[#F5A623]">care.</span><br />
+            {/* <span className="text-[#F5A623]">supply.</span> */}
           </motion.h1>
 
           <motion.p
