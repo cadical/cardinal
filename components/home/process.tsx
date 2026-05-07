@@ -1,7 +1,7 @@
 export default function Process() {
   const steps = [
     { title: "Choose", text: "Browse or upload order list" },
-    { title: "Verify", text: "Pharmacist confirms compliance" },
+    { title: "Verify", text: "Compliance Officer confirms compliance" },
     { title: "Dispatch", text: "Same-day or nationwide delivery" },
     { title: "Receive", text: "Track and receive invoice" },
   ];

@@ -28,7 +28,7 @@ export function Navbar() {
             Cadical Solutions
           </div>
           <div className="text-[10px] text-[#6b7c93] font-light">
-            Health is Wealth
+            Right Supply. Right Time. Every Time.
           </div>
         </Link>
       </div>
