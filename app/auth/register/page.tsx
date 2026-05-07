@@ -47,9 +47,9 @@ export default function RegisterPage() {
     // Clinician
     firstName: "",
     lastName: "",
-    specialization: "",
-    licenseNumber: "",
-    yearsOfExperience: "",
+    // specialization: "",
+    // licenseNumber: "",
+    // yearsOfExperience: "",
     bio: "",
   })
 
@@ -69,19 +69,19 @@ export default function RegisterPage() {
     return true
   }
 
-  const validateStep2 = () => {
-    if (
-      !formData.firstName ||
-      !formData.lastName ||
-      !formData.specialization ||
-      // !formData?.licenseNumber ||
-      !formData.yearsOfExperience
-    ) {
-      setError("Please fill in all required fields")
-      return false
-    }
-    return true
-  }
+  // const validateStep2 = () => {
+  //   if (
+  //     !formData.firstName ||
+  //     !formData.lastName ||
+  //     !formData.specialization ||
+  //     // !formData?.licenseNumber ||
+  //     !formData.yearsOfExperience
+  //   ) {
+  //     setError("Please fill in all required fields")
+  //     return false
+  //   }
+  //   return true
+  // }
 
   const handleNext = () => {
     setError("")
@@ -95,7 +95,7 @@ export default function RegisterPage() {
     setError("")
     setSuccess("")
 
-    if (!validateStep2()) return
+    // if (!validateStep2()) return
 
     setIsLoading(true)
 
@@ -278,70 +278,9 @@ export default function RegisterPage() {
                     </div>
                   </div>
 
-                  <div className="space-y-2">
-                    <label htmlFor="specialization" className="text-sm font-medium">
-                      Specialization
-                    </label>
-                    <Select
-                      value={formData.specialization}
-                      onValueChange={(val) => setFormData({ ...formData, specialization: val })}
-                    >
-                      <SelectTrigger>
-                        <SelectValue placeholder="Select specialization" />
-                      </SelectTrigger>
-                      <SelectContent>
-                        {specializations.map((spec) => (
-                          <SelectItem key={spec} value={spec}>
-                            {spec}
-                          </SelectItem>
-                        ))}
-                      </SelectContent>
-                    </Select>
-                  </div>
+                  
 
-                  <div className="space-y-2">
-                    <label htmlFor="licenseNumber" className="text-sm font-medium">
-                      License Number (optional)
-                    </label>
-                    <Input
-                    type="text"
-                      id="licenseNumber"
-                      placeholder="LIC-001234 (Optional)"
-                      value={formData.licenseNumber}
-                      onChange={(e) => setFormData({ ...formData, licenseNumber: e.target.value })}
-                      // required={false}
-                      disabled={isLoading}
-                    />
-                  </div>
-
-                  <div className="space-y-2">
-                    <label htmlFor="yearsOfExperience" className="text-sm font-medium">
-                      Years of Experience
-                    </label>
-                    <Input
-                      id="yearsOfExperience"
-                      type="number"
-                      placeholder="5"
-                      value={formData.yearsOfExperience}
-                      onChange={(e) => setFormData({ ...formData, yearsOfExperience: e.target.value })}
-                      required
-                      disabled={isLoading}
-                    />
-                  </div>
-
-                  <div className="space-y-2">
-                    <label htmlFor="bio" className="text-sm font-medium">
-                      Professional Bio
-                    </label>
-                    <Textarea
-                      id="bio"
-                      placeholder="Tell us about your professional background and expertise..."
-                      value={formData.bio}
-                      onChange={(e) => setFormData({ ...formData, bio: e.target.value })}
-                      rows={4}
-                      disabled={isLoading}
-                    />
-                  </div>
+                  
 
                   <div className="flex gap-3">
                     <Button
