@@ -35,7 +35,7 @@ export default function Hero() {
           >
             Reliable healthcare supply,
             delivered with<br />
-            <span className="text-[#F5A623]">care.</span><br />
+            <span className="text-[#F5A623]">care 🇳🇬.</span><br />
             {/* <span className="text-[#F5A623]">supply.</span> */}
           </motion.h1>
 
@@ -49,10 +49,10 @@ export default function Hero() {
 
           <div className="flex flex-wrap gap-3">
             <Link href={'/products'} className="bg-[#F5A623] text-white px-6 py-3 rounded font-semibold">
-              Shop Pharmacy
+              MediStore
             </Link>
             <Link href={'/products?type=institutional'} className="bg-white text-[#1565C0] px-6 py-3 rounded font-semibold">
-              Order Supplies
+              Institutional Portal
             </Link>
             <Link href={'#services'} className="border border-white/30 text-white px-6 py-3 rounded font-semibold">
               Our Services
