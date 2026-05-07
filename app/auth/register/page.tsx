@@ -196,8 +196,36 @@ export default function RegisterPage() {
                 // </Alert>
               )}
 
-              {step === 1 ? (
                 <div className="space-y-4">
+                  <div className="grid grid-cols-2 gap-4">
+                    <div className="space-y-2">
+                      <label htmlFor="firstName" className="text-sm font-medium">
+                        First Name
+                      </label>
+                      <Input
+                        id="firstName"
+                        placeholder="John"
+                        value={formData.firstName}
+                        onChange={(e) => setFormData({ ...formData, firstName: e.target.value })}
+                        required
+                        disabled={isLoading}
+                      />
+                    </div>
+                    <div className="space-y-2">
+                      <label htmlFor="lastName" className="text-sm font-medium">
+                        Last Name
+                      </label>
+                      <Input
+                        id="lastName"
+                        placeholder="Doe"
+                        value={formData.lastName}
+                        onChange={(e) => setFormData({ ...formData, lastName: e.target.value })}
+                        required
+                        disabled={isLoading}
+                      />
+                    </div>
+                  </div>
+
                   <div className="space-y-2">
                     <label htmlFor="email" className="text-sm font-medium">
                       Email Address
@@ -243,44 +271,8 @@ export default function RegisterPage() {
                     />
                   </div>
 
-                  <Button type="button" onClick={handleNext} className="w-full" disabled={isLoading}>
-                    Next
-                  </Button>
                 </div>
-              ) : (
-                <div className="space-y-4">
-                  <div className="grid grid-cols-2 gap-4">
-                    <div className="space-y-2">
-                      <label htmlFor="firstName" className="text-sm font-medium">
-                        First Name
-                      </label>
-                      <Input
-                        id="firstName"
-                        placeholder="John"
-                        value={formData.firstName}
-                        onChange={(e) => setFormData({ ...formData, firstName: e.target.value })}
-                        required
-                        disabled={isLoading}
-                      />
-                    </div>
-                    <div className="space-y-2">
-                      <label htmlFor="lastName" className="text-sm font-medium">
-                        Last Name
-                      </label>
-                      <Input
-                        id="lastName"
-                        placeholder="Doe"
-                        value={formData.lastName}
-                        onChange={(e) => setFormData({ ...formData, lastName: e.target.value })}
-                        required
-                        disabled={isLoading}
-                      />
-                    </div>
-                  </div>
-
-                  
-
-                  
+              
 
                   <div className="flex gap-3">
                     <Button
@@ -296,8 +288,8 @@ export default function RegisterPage() {
                       {isLoading ? "Creating Account..." : "Create Account"}
                     </Button>
                   </div>
-                </div>
-              )}
+                
+              
             </form>
 
             <div className="mt-6 pt-6 border-t border-border text-center">
