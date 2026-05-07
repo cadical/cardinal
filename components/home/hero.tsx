@@ -51,7 +51,7 @@ export default function Hero() {
             <Link href={'/products'} className="bg-[#F5A623] text-white px-6 py-3 rounded font-semibold">
               MediStore
             </Link>
-            <Link href={'/products?type=institutional'} className="bg-white text-[#1565C0] px-6 py-3 rounded font-semibold">
+            <Link href={'/institutional'} className="bg-white text-[#1565C0] px-6 py-3 rounded font-semibold">
               Institutional Portal
             </Link>
             <Link href={'#services'} className="border border-white/30 text-white px-6 py-3 rounded font-semibold">
