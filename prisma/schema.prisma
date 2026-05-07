@@ -209,6 +209,67 @@ model Booking {
   createdAt     DateTime @default(now())
 }
 
+model Institution {
+  id              String   @id @default(cuid())
+
+  // Institution Profile
+  instName        String
+  instType        String
+  cac             String
+  yearEstablished Int?
+  staffCount      Int?
+  bedCapacity     Int?
+
+  // Location & Contact
+  state           String
+  lga             String
+  address         String
+  contactName     String
+  designation     String
+  phone           String
+  altPhone        String?
+  email           String
+
+  // Services (store as arrays for simplicity)
+  services        String[]
+  specialistOpts  String[]
+  consultOpts     String[]
+  reagentOpts     String[]
+  eduOpts         String[]
+
+  volume          String?
+  notes           String?
+
+  // Compliance
+  nafdac          String?
+  pcn             String?
+  confirmDocs     Boolean @default(false)
+
+  // Account
+  accountEmail    String   @unique
+  passwordHash    String
+
+  // Relations
+  documents       Document[]
+
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+}
+
+model Document {
+  id            String   @id @default(cuid())
+  institutionId String
+  institution   Institution @relation(fields: [institutionId], references: [id])
+
+  name          String
+  type          String // CAC, NAFDAC, OTHER
+  url           String
+
+  status        String @default("Pending")
+
+  createdAt     DateTime @default(now())
+}
+
 
 enum ServiceCategory {
   CONSULTATIONS

@@ -14,7 +14,7 @@ export default function Portals() {
         <div className="grid md:grid-cols-3 gap-6 max-w-6xl mx-auto">
           {[
             {
-              title:"Pharmacy Store",
+              title:"MediStore",
               sub:"For Everyone",
               icon:"💊",
               features:[
