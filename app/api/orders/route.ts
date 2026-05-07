@@ -19,3 +19,26 @@ import { headers } from 'next/headers';
         }
        
     }
+
+
+
+//     let orders = [];
+
+// export async function GET() {
+//   return Response.json(orders);
+// }
+
+// export async function POST(req) {
+//   const body = await req.json();
+
+//   const order = {
+//     id: crypto.randomUUID(),
+//     status: "Processing",
+//     createdAt: new Date().toISOString(),
+//     ...body,
+//   };
+
+//   orders.push(order);
+
+//   return Response.json(order);
+// }
