@@ -74,7 +74,7 @@ function ProductsContent() {
 
   const [products, setProducts] = useState<Product[]>([])
 
-  const [loading, setLoading] = useState(true)
+  // const [loading, setLoading] = useState(true)
 
   const [error, setError] = useState<string | null>(
     null
@@ -113,7 +113,7 @@ function ProductsContent() {
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        setLoading(true)
+        // setLoading(true)
 
         setError(null)
 
@@ -184,7 +184,7 @@ function ProductsContent() {
 
         setProducts([])
       } finally {
-        setLoading(false)
+        // setLoading(false)
       }
     }
 
@@ -390,7 +390,7 @@ function ProductsContent() {
 
             {/* LOADING */}
 
-            {loading ? (
+            {/* {loading ? (
               <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-6">
                 {[...Array(6)].map((_, index) => (
                   <div
@@ -412,7 +412,8 @@ function ProductsContent() {
                   {error}
                 </p>
               </div>
-            ) : products.length === 0 ? (
+            ) :  */}
+            {products.length === 0 ? (
               // EMPTY
               <div className="flex flex-col items-center justify-center py-20 text-center">
                 <Search className="h-12 w-12 text-muted-foreground/30 mb-4" />
@@ -475,6 +476,7 @@ function ProductsContent() {
                 </div>
               </div>
             )}
+            {/* )} */}
           </section>
         </div>
       </main>
