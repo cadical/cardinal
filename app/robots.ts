@@ -15,8 +15,10 @@ export default function robots(): MetadataRoute.Robots {
           'CCBot',
           'Bytespider',
           'PerplexityBot',
+          'Zap',
+          'Burpsuite'
         ],
-        allow: '/',
+        // allow: '/',
         disallow: ['/*'],
       },
     ],

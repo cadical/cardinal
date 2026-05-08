@@ -1,33 +1,39 @@
 # robots.txt
 
 User-agent: GPTBot
-Disallow: /
-Allow: /
+Disallow: /*
+
 
 User-agent: ChatGPT-User
-Disallow: /
-Allow: /
+Disallow: /*
+
 
 User-agent: Google-Extended
-Disallow: /
+Disallow: /*
 
 User-agent: ClaudeBot
-Disallow: /
+Disallow: /*
 
 User-agent: anthropic-ai
-Disallow: /
+Disallow: /*
 
 User-agent: CCBot
-Disallow: /
+Disallow: /*
 
 User-agent: Bytespider
-Disallow: /
+Disallow: /*
 
 User-agent: PerplexityBot
-Disallow: /
+Disallow: /*
 
 User-agent: YouBot
-Disallow: /
+Disallow: /*
+
+User-agent: Zap
+Disallow: /*
+          
+User-agent: Burpsuite
+Disallow: /*
 
 User-agent: *
 Disallow: /private/
