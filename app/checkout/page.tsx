@@ -382,7 +382,7 @@ export default function CheckoutPage() {
                           className="w-4 h-4"
                         />
                         <div>
-                          <p className="font-semibold">Flutterwave Payment</p>
+                          <p className="font-semibold">Card Payment</p>
                           <p className="text-sm text-muted-foreground">
                             Secure payment via card, bank transfer, or mobile money
                           </p>
@@ -490,7 +490,7 @@ export default function CheckoutPage() {
             <div className="bg-card border border-border rounded-lg p-6 sticky top-24 animate-in fade-in slide-in-from-right-4 duration-500">
               <h3 className="text-xl font-bold text-foreground mb-6">Order Summary</h3>
 
-              <div className="space-y-4 mb-6 pb-6 border-b border-border">
+              {/* <div className="space-y-4 mb-6 pb-6 border-b border-border">
                 <div className="space-y-2">
                   <p className="text-sm text-muted-foreground">Digital Blood Pressure Monitor</p>
                   <p className="text-sm font-semibold">$89.99</p>
@@ -501,10 +501,10 @@ export default function CheckoutPage() {
                   </p>
                   <p className="text-sm font-semibold">$49.98</p>
                 </div>
-              </div>
+              </div> */}
 
-              <div className="space-y-3 mb-6">
-                <div className="flex justify-between">
+              {/* <div className="space-y-3 mb-6"> */}
+                {/* <div className="flex justify-between">
                   <span className="text-sm text-muted-foreground">Subtotal</span>
                   <span className="text-sm font-semibold">$139.97</span>
                 </div>
@@ -515,8 +515,8 @@ export default function CheckoutPage() {
                 <div className="flex justify-between">
                   <span className="text-sm text-muted-foreground">Tax</span>
                   <span className="text-sm font-semibold">$14.99</span>
-                </div>
-              </div>
+                </div> */}
+              {/* </div> */}
 
               <div className="border-t border-border pt-4">
                 <div className="flex justify-between">
