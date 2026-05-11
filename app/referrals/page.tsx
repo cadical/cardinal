@@ -249,7 +249,7 @@ export default function ReferralsPage() {
                 whileHover={{ scale: 1.05 }}
                 className="w-14 h-14 bg-gradient-to-br from-blue to-[#1565C0] rounded-xl flex items-center justify-center text-white font-bold text-xl shadow-lg"
               >
-                <Image src={'/images/logo'} height={20} width={20} alt='C' className='w-20 h-20' />
+                <Image src={'/images/logo.png'} height={20} width={20} alt='C' className='w-20 h-20' />
               </motion.div>
               <div>
                 <h1 className="font-cormorant text-2xl sm:text-3xl font-semibold text-white">Cadical Solutions Ltd</h1>
@@ -275,7 +275,7 @@ export default function ReferralsPage() {
         >
           <div className="relative flex justify-between">
             {/* Connection line */}
-            <div className="absolute top-1/2 left-0 right-0 h-0.5 bg-blue-300 opacity-20 transform -translate-y-1/2" />
+            <div className="absolute top-1/2 left-0 right-0 h-0.5 bg-[#1565C0] opacity-20 transform -translate-y-1/2" />
             
             {steps.map((step, idx) => (
               <motion.div
