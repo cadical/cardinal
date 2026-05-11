@@ -3,7 +3,6 @@
 import { Suspense, useEffect, useMemo, useState } from 'react'
 import { useSearchParams } from 'next/navigation'
 
-import { Footer } from '@/components/footer'
 import { ProductNavbar } from '@/components/product-navbar'
 import { ProductCard } from '@/components/product-card'
 
@@ -481,7 +480,6 @@ function ProductsContent() {
         </div>
       </main>
 
-      <Footer />
     </div>
   )
 }
