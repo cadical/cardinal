@@ -70,7 +70,7 @@ export function Footer() {
               <span className="font-bold">Cadical Solutions</span>
               </Link>
             </div>
-            <p className="text-sm text-muted-foreground">Health is life, protect yours with us.</p>
+            <p className="text-sm text-muted-foreground">Right Supply. Right Time. Every Time.</p>
           </div>
           
           {/* <div>
