@@ -12,7 +12,7 @@ export function ProductNavbar() {
   const [cartCount, setCartCount] = useState(0)
 
   return (
-    <nav className="mt-12  z-50 w-full border-b border-border bg-background/95 backdrop-blur">
+    <nav className="mt-12  z-10 w-full border-b border-border bg-background/95 backdrop-blur">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           
