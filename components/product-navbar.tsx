@@ -33,9 +33,9 @@ export function ProductNavbar() {
             )}
           </Link>
 
-          <Link href="/account" className="p-2 hover:bg-muted rounded-lg transition-colors duration-200 hidden md:block">
+          {/* <Link href="/account" className="p-2 hover:bg-muted rounded-lg transition-colors duration-200 hidden md:block">
             <Heart className="h-5 w-5 text-foreground hover:text-primary transition-colors" />
-          </Link>
+          </Link> */}
           </div>
           </div>
 
