@@ -123,7 +123,7 @@ export default function PrivacyPolicyPage() {
             <Separator />
 
             {/* Contact */}
-            <section className="space-y-4">
+            {/* <section className="space-y-4">
               <h2 className="text-2xl font-semibold">8. Contact Us</h2>
               <p className="text-muted-foreground">
                 If you have any questions about this Privacy Policy, please
@@ -135,7 +135,7 @@ export default function PrivacyPolicyPage() {
               <p className="text-muted-foreground">
                 Address: 123 Healthcare Avenue, Lagos, Nigeria
               </p>
-            </section>
+            </section> */}
 
           </CardContent>
         </Card>

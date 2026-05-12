@@ -25,14 +25,14 @@ export default function RefundServicePolicyPage() {
 
             <Separator />
 
-            <section className="space-y-4">
+            {/* <section className="space-y-4">
               <h2 className="text-2xl font-semibold">2. Staffing Services</h2>
               <p className="text-muted-foreground">
                 Staffing engagements are governed by contractual agreements.
                 Fees for professional placement services are non-refundable
                 once a placement has been confirmed.
               </p>
-            </section>
+            </section> */}
 
             <Separator />
 
