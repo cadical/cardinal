@@ -44,10 +44,11 @@ export default function CheckoutPage() {
     setStep('payment')
   }
 
+  const public_key='FLWPUBK-b730e9be4ece5e9b13dd5883650a9084-X'
   const config = {
-  public_key:
-    process.env
-      .NEXT_PUBLIC_FLUTTERWAVE_PUBLIC_KEY!,
+  public_key: public_key,
+    // process.env
+    //   .NEXT_PUBLIC_FLUTTERWAVE_PUBLIC_KEY!,
       
   tx_ref: Date.now().toString(),
 

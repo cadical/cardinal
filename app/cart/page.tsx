@@ -183,7 +183,7 @@ export default function CartPage() {
 
           {/* SUMMARY */}
 
-          <aside className="border rounded-2xl bg-card p-6 h-fit sticky top-24">
+          <aside className="mt-8 border rounded-2xl bg-card p-6 h-fit sticky top-24">
             <h2 className="text-2xl font-bold mb-6">
               Order Summary
             </h2>
