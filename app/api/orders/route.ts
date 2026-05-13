@@ -11,7 +11,9 @@ import { headers } from 'next/headers';
                 // where: {
                 //     userId: session?.user?.id,
                 // },
-                include: { orderItems: true },
+                include: { orderItems: true,
+                    trackingEvents: true,
+                 },
                 });
                 console.log(orders)
         return Response.json(orders);

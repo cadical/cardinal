@@ -18,9 +18,10 @@ async function getOrder(id: string) {
 export default async function Page({
   params,
 }: {
-  params: { id: string }
+  params: Promise<{ id: string }>
 }) {
-  const order = await getOrder(params.id)
+  const id = (await params).id
+  const order = await getOrder(id)
 
   return (
     <div className="max-w-3xl mx-auto p-6 space-y-6">

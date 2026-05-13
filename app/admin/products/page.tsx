@@ -47,6 +47,8 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import Link from "next/link";
+import { useRouter } from "next/navigation";
 
 // ======================================================
 // TYPES
@@ -68,6 +70,9 @@ type Order = {
   totalAmount: number;
   status: string;
   createdAt: string;
+  // trackingEvents: {
+  //   id: string;
+  // }
 };
 
 type ProductForm = {
@@ -99,6 +104,9 @@ const defaultForm: ProductForm = {
 // ======================================================
 
 export default function EcommerceDashboard() {
+
+  const router = useRouter()
+
   // ======================================================
   // STATE
   // ======================================================
@@ -326,9 +334,9 @@ export default function EcommerceDashboard() {
 
       <Tabs defaultValue="admin" className="space-y-6">
         <TabsList>
-          {/* <TabsTrigger value="orders">
+          <TabsTrigger value="orders">
             Orders
-          </TabsTrigger> */}
+          </TabsTrigger>
 
           {/* <TabsTrigger value="profile">
             Profile
@@ -366,6 +374,7 @@ export default function EcommerceDashboard() {
                     <TableHead>Status</TableHead>
 
                     <TableHead>Total</TableHead>
+                    <TableHead>Actions</TableHead>
                   </TableRow>
                 </TableHeader>
 
@@ -388,6 +397,18 @@ export default function EcommerceDashboard() {
 
                       <TableCell>
                         ${order.totalAmount}
+                      </TableCell>
+
+                      <TableCell>
+                        <Button
+                          size="sm"
+                          onClick={() =>
+                            router.push(`/tracking/${order.id}`)
+                          }
+                        >
+                          View Tracking
+                        </Button>
+
                       </TableCell>
                     </TableRow>
                   ))}
@@ -412,7 +433,7 @@ export default function EcommerceDashboard() {
         {/* PROFILE */}
         {/* ====================================================== */}
 
-        <TabsContent value="profile">
+        {/* <TabsContent value="profile">
           <Card>
             <CardHeader>
               <CardTitle>
@@ -430,13 +451,13 @@ export default function EcommerceDashboard() {
               </Button>
             </CardContent>
           </Card>
-        </TabsContent>
+        </TabsContent> */}
 
         {/* ====================================================== */}
         {/* ADDRESS */}
         {/* ====================================================== */}
 
-        <TabsContent value="address">
+        {/* <TabsContent value="address">
           <Card>
             <CardHeader>
               <CardTitle>
@@ -452,7 +473,7 @@ export default function EcommerceDashboard() {
               </Button>
             </CardContent>
           </Card>
-        </TabsContent>
+        </TabsContent> */}
 
         {/* ====================================================== */}
         {/* PRODUCTS */}
