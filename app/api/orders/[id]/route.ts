@@ -48,8 +48,8 @@ export async function GET(
   { params }: { params: Promise<{ id: string }> }
 ) {
   const id =  (await params).id
-  const order = await prisma.order.findUnique({
-    where: { id: id },
+  const order = await prisma.order.findFirst({
+    where: { userId: id },
     include: {
       trackingEvents: {
         orderBy: { createdAt: "desc" },

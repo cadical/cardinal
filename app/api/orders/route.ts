@@ -4,15 +4,16 @@ import { headers } from 'next/headers';
 
     export async function GET() {
         try {
-            const session = await auth.api.getSession({
-                  headers: await headers(),
-            })
+            // const session = await auth.api.getSession({
+            //       headers: await headers(),
+            // })
              const orders = await prisma.order.findMany({
-                where: {
-                    userId: session?.user?.id,
-                },
+                // where: {
+                //     userId: session?.user?.id,
+                // },
                 include: { orderItems: true },
                 });
+                console.log(orders)
         return Response.json(orders);
         } catch (error) {
             return Response.json({ error: "Failed to fetch orders" }, { status: 500 }); 

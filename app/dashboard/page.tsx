@@ -11,6 +11,7 @@ import {
 } from "@/components/ui/table"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { Button } from "@/components/ui/button"
+import { authClient } from "@/lib/auth-client"
 
 type Order = {
   id: string
@@ -21,27 +22,32 @@ type Order = {
 
 export default function Dashboard() {
   const router = useRouter()
+
   const [orders, setOrders] = useState<Order[]>([])
 
-  async function load() {
-    const res = await fetch("/api/orders")
+  const { data: session } = authClient.useSession()
+
+  async function load(userId: string) {
+    const res = await fetch(`/api/orders/${userId}`)
+
     const data = await res.json()
-    setOrders(data)
+
+    setOrders(data || [])
   }
 
   useEffect(() => {
-    load()
-  }, [])
+    if (session?.user?.id) {
+      load(session.user.id)
+    }
+  }, [session])
 
   return (
     <div className="p-6 space-y-6">
-
       <h1 className="text-2xl font-bold">
         Admin Dashboard
       </h1>
 
       <Tabs defaultValue="orders">
-
         <TabsList>
           <TabsTrigger value="orders">Orders</TabsTrigger>
         </TabsList>
@@ -54,7 +60,6 @@ export default function Dashboard() {
 
             <CardContent>
               <Table>
-
                 <TableHeader>
                   <TableRow>
                     <TableHead>ID</TableHead>
@@ -84,13 +89,10 @@ export default function Dashboard() {
                     </TableRow>
                   ))}
                 </TableBody>
-
               </Table>
             </CardContent>
-
           </Card>
         </TabsContent>
-
       </Tabs>
     </div>
   )
