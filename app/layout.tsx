@@ -19,14 +19,14 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en" className={`${manrope.variable} ${fraunces.variable}`}>
       <body className="bg-[#FBFAF7] text-[#1A1A18] font-sans">
-                <CartProvider>
+                {/* <CartProvider>
 
-        <Navbar />
+        <Navbar /> */}
         {children}
-        <Toaster />
+        {/* <Toaster />
         <WhatsAppButton />
         <Footer />
-        </CartProvider>
+        </CartProvider> */}
       </body>
     </html>
   );
