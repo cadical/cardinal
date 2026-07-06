@@ -20,37 +20,33 @@ export default function Home() {
   return (
     <main className="font-sans text-[#1a2332] bg-white overflow-x-hidden">
 
-      <div>
-        <h1>This Site is down because the owner has refused to completely pay the developer who built it</h1>
-      </div>
+     <Hero />
 
-     {/* <Hero /> */}
-
-      {/* <Portals /> */}
+      <Portals />
 
       {/* WHY */}
-      {/* <Why /> */}
+      <Why />
 
       {/* SERVICES */}
-      {/* <Services /> */}
+      <Services />
 
       {/* Products */}
-      {/* <FeaturedProduct /> */}
+      <FeaturedProduct />
 
       {/* PROCESS */}
-      {/* <Process /> */}
+      <Process />
 
       {/* CTA */}
-      {/* <CTA /> */}
+      <CTA />
 
       {/* Compliance */}
-      {/* <Compliance /> */}
+      <Compliance />
 
       {/* Consent */}
-      {/* <Consent /> */}
+      <Consent />
 
       {/* Coverage */}
-      {/* <Coverage /> */}
+      <Coverage />
 
     </main>
   );
